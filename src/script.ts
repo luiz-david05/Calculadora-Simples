@@ -1,85 +1,81 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var display = document.getElementById("display");
-    var buttons = document.querySelectorAll("button");
-    var expression = "";
-    var easteregg = document.getElementById("easteregg");
-    buttons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            var buttonText = button.textContent;
+document.addEventListener("DOMContentLoaded", () => {
+    const display = document.getElementById("display") as HTMLInputElement;
+    const buttons = document.querySelectorAll("button");
+    let expression = "";
+    const easteregg = document.getElementById("easteregg") as HTMLInputElement; 
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const buttonText = button.textContent;
+
             if (buttonText === "=") {
                 if (display.value === "") {
                     return;
                 }
                 try {
-                    var result = eval(expression);
-                    display.value = "".concat(expression, " = ").concat(result);
+                    const result = eval(expression);
+                    display.value = `${expression} = ${result}`;
                     expression = "";
-                }
-                catch (error) {
+                } catch (error) {
                     display.value = "Error";
                     expression = "";
                 }
-            }
-            else if (buttonText === "AC") {
+            } else if (buttonText === "AC") {
                 display.value = "";
                 expression = "";
-            }
-            else if (buttonText === "CE") {
+            } else if (buttonText === "CE") {
                 display.value = display.value.slice(0, -1);
                 expression = expression.slice(0, -1);
-            }
-            else if (buttonText === "x") {
+            } else if (buttonText === "x") {
                 display.value += "*";
                 expression += "*";
-            }
-            else if (buttonText === "÷") {
+            } else if (buttonText === "÷") {
                 display.value += "/";
                 expression += "/";
-            }
-            else if (buttonText === "^") {
+            } else if (buttonText === "^") {
                 display.value += "**";
                 expression += "**";
-            }
-            else {
+            } else {
                 display.value += buttonText;
                 expression += buttonText;
             }
+
             if (display.value.length > 20) {
                 display.value = display.value.slice(0, 20);
             }
-            if (expression === "3385") {
+            // easteregg
+            if (expression === "3385"){
                 display.value = "Te amo, Camila!";
                 easteregg.textContent = "❤️";
                 expression = "";
-                setTimeout(function () {
+
+                setTimeout(() => {
                     easteregg.textContent = "";
                     display.value = "";
-                }, 5000);
+                }
+                , 5000);
             }
         });
     });
-    document.addEventListener("keydown", function (event) {
-        var key = event.key;
+    document.addEventListener("keydown", (event) => {
+        const key = event.key;
+
         if (/[0-9]/.test(key)) {
             display.value += key;
             expression += key;
-        }
-        else if (key === "+" || key === "-" || key === "*" || key === "/") {
+        } else if (key === "+" || key === "-" || key === "*" || key === "/") {
             display.value += key;
             expression += key;
-        }
-        else if (key === "Enter") {
+        } else if (key === "Enter") {
             try {
-                var result = eval(expression);
-                display.value = "".concat(expression, " = ").concat(result);
+                const result = eval(expression);
+                display.value = `${expression} = ${result}`;
                 expression = "";
-            }
-            catch (error) {
+            } catch (error) {
                 display.value = "Error";
                 expression = "";
             }
-        }
-        else if (key === "Backspace") {
+        } else if (key === "Backspace") {
             display.value = display.value.slice(0, -1);
             expression = expression.slice(0, -1);
         }
