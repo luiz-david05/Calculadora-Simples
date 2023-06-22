@@ -1,16 +1,15 @@
-html {
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background: linear-gradient(to right, skyblue, #e6e6e6);
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+html {
+    font-family: "Roboto", "sans-serif";
+    line-height: 1.5;
 }
 
 h1 {
     text-align: center;
     color: #666;
-    font-size: 40px;
-    margin-bottom: 20px
+    font-size: calc(1.5rem + 1vw);
+    margin-bottom: 20px;
 }
 
 .calculadora {
@@ -37,7 +36,8 @@ h1 {
 .operator,
 .number,
 .equal,
-.clear, .erase {
+.clear,
+.erase {
     width: 100%;
     height: 40px;
 }
@@ -51,7 +51,9 @@ h1 {
     color: #666;
 }
 
-.erase, .clear, .operator {
+.erase,
+.clear,
+.operator {
     color: orange;
 }
 
@@ -69,5 +71,28 @@ h1 {
 }
 
 .equal:hover {
-    background-color: #e6e6e6;
+    background-color: #ff8c00;
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+    padding: 20px;
+    justify-content: left;
+}
+
+footer p {
+    color: #fff;
+    text-decoration: none;
+}
+strong {
+    color: orange;
+}
+
+@media (max-width: 768px) {
+    .calculadora {
+        width: 100%;
+    }
 }
