@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     display.value = "Error";
                     expression = "";
                 }
-            } else if (buttonText === "C") {
+            } else if (buttonText === "AC") {
                 display.value = "";
                 expression = "";
             } else if (buttonText === "CE") {
