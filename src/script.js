@@ -1,23 +1,30 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var display = document.getElementById("display");
-    var buttons = document.querySelectorAll("button");
-    var expression = "";
-    var easteregg = document.getElementById("easteregg");
-    buttons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            var buttonText = button.textContent;
+"use strict";
+document.addEventListener("DOMContentLoaded", () => {
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+    let expression = "";
+    const historicoDiv = document.getElementById("historico");
+    const easteregg = document.getElementById("easteregg");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const buttonText = button.textContent;
             if (buttonText === "=") {
                 if (display.value === "") {
                     return;
                 }
                 try {
-                    var result = eval(expression);
-                    display.value = "".concat(expression, " = ").concat(result);
+                    const result = eval(expression);
+                    display.value = `${result}`;
+                    historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`;
                     expression = "";
                 }
                 catch (error) {
-                    display.value = "Error";
+                    display.value = "Operação inválida";
                     expression = "";
+                    setTimeout(() => {
+                        display.value = '';
+                        expression = '';
+                    }, 1000);
                 }
             }
             else if (buttonText === "AC") {
@@ -52,15 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 display.value = "Te amo, Camila!";
                 easteregg.textContent = "❤️";
                 expression = "";
-                setTimeout(function () {
+                setTimeout(() => {
                     easteregg.textContent = "";
                     display.value = "";
-                }, 5000);
+                }, 3000);
             }
         });
     });
-    document.addEventListener("keydown", function (event) {
-        var key = event.key;
+    document.addEventListener("keydown", (event) => {
+        const key = event.key;
         if (/[0-9]/.test(key)) {
             display.value += key;
             expression += key;
@@ -71,13 +78,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         else if (key === "Enter") {
             try {
-                var result = eval(expression);
-                display.value = "".concat(expression, " = ").concat(result);
+                const result = eval(expression);
+                display.value = `${result}`;
+                historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`;
                 expression = "";
             }
             catch (error) {
-                display.value = "Error";
+                display.value = "Operação inválida";
                 expression = "";
+                setTimeout(() => {
+                    display.value = '';
+                    expression = '';
+                }, 1000);
             }
         }
         else if (key === "Backspace") {

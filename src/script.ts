@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const display = document.getElementById("display") as HTMLInputElement;
     const buttons = document.querySelectorAll("button");
-    let expression = "";
-    const easteregg = document.getElementById("easteregg") as HTMLInputElement; 
+    let expression: string = "";
+    const historicoDiv: HTMLElement = document.getElementById("historico")
+    const easteregg = document.getElementById("easteregg") as HTMLInputElement;
+
+
 
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -13,12 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 try {
-                    const result = eval(expression);
-                    display.value = `${expression} = ${result}`;
+                    const result: string = eval(expression);
+                    display.value = `${result}`;
+                    historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`
                     expression = "";
                 } catch (error) {
-                    display.value = "Error";
+                    display.value = "Operação inválida";
                     expression = "";
+
+                    setTimeout(() => {
+                        display.value = ''
+                        expression = ''
+                    }, 1000)
                 }
             } else if (buttonText === "AC") {
                 display.value = "";
@@ -53,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     easteregg.textContent = "";
                     display.value = "";
                 }
-                , 5000);
+                , 3000);
             }
         });
     });
@@ -69,11 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (key === "Enter") {
             try {
                 const result = eval(expression);
-                display.value = `${expression} = ${result}`;
+                display.value = `${result}`;
+                historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`
                 expression = "";
             } catch (error) {
-                display.value = "Error";
+                display.value = "Operação inválida";
                 expression = "";
+
+                setTimeout(() => {
+                    display.value = ''
+                    expression = ''
+                }, 1000)
             }
         } else if (key === "Backspace") {
             display.value = display.value.slice(0, -1);
