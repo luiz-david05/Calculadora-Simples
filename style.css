@@ -32,8 +32,8 @@ h1 {
 #historico {
   width: 300px;
   margin: 0 auto 10px;
-  padding: 40px;
-  font-size: 20px;
+  padding: 5px;
+  font-size: calc(1rem + 1vw);
   color: #333;
   text-align: right;
 }
