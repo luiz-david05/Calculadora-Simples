@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("button");
     let expression = "";
     const historicoDiv = document.getElementById("historico");
-    const easteregg = document.getElementById("easteregg");
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
             const buttonText = button.textContent;
