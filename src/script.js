@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const result = eval(expression);
                     display.value = `${result}`;
                     historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`;
-                    expression = "";
                 }
                 catch (error) {
                     display.value = "Operação inválida";
@@ -54,16 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (display.value.length > 20) {
                 display.value = display.value.slice(0, 20);
             }
-            // easteregg
-            if (expression === "3385") {
-                display.value = "Te amo, Camila!";
-                easteregg.textContent = "❤️";
-                expression = "";
-                setTimeout(() => {
-                    easteregg.textContent = "";
-                    display.value = "";
-                }, 3000);
-            }
         });
     });
     document.addEventListener("keydown", (event) => {
@@ -81,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const result = eval(expression);
                 display.value = `${result}`;
                 historicoDiv.innerHTML = `<p>${expression} = ${result}</p>`;
-                expression = "";
             }
             catch (error) {
                 display.value = "Operação inválida";
